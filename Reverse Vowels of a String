@@ -1,0 +1,56 @@
+class Solution {
+public:
+    string reverseVowels(string s) 
+    {
+        string result = s;
+
+        set <char> st;
+        st.insert('a');
+        st.insert('e');
+        st.insert('i');
+        st.insert('o');
+        st.insert('u');
+        st.insert('A');
+        st.insert('E');
+        st.insert('I');
+        st.insert('O');
+        st.insert('U');
+
+        int i =0;
+        int j = s.size();
+        j = j-1;
+
+       
+        while(i<j)
+        {           
+            auto it = st.find(s[i]);
+            auto it2 = st.find(s[j]);
+
+            if((it != st.end()) && (it2 != st.end()))
+            {                               
+                std::swap(result[i], result[j]);
+                i++;
+                j--;
+            }
+
+            if( (it != st.end()) && (it2 == st.end()) ) //i vowel, j not vowel
+            {
+                j--;
+            }
+            else if( (it  == st.end() &&  (it2 != st.end()))) //i not vowel, j vowel
+            {
+                i++;
+            }
+            else if( (it  == st.end() && (it2 == st.end()))) //i not vowel, j not vowel
+            {
+                i++;
+                j--;
+            }           
+
+        }
+
+       
+        return result;
+                
+    }
+};
