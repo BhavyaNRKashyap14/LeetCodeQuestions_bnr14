@@ -1,0 +1,38 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string s) 
+    {
+        string result = s;
+
+        int i =0;
+        int j = s.size();
+        j = j-1;
+
+        while(i<j)
+        {
+            if((isalpha(s[i])) && (isalpha(s[j]))) //s[i] and s[j] alpha
+            {
+                std::swap(result[i], result[j]);
+                i++;
+                j--;
+            }
+            else if ((isalpha(s[i]) && (!(isalpha(s[j])))) ) //s[i] alpha and s[j] not alpha
+            {
+                j--;
+            }
+            else if( (!(isalpha(s[i])) && (isalpha(s[j])))) //s[i] not alpha and s[j] alpha
+            {
+                i++;
+            }
+            else //s[i] and s[j] not alpha
+            {
+                i++;
+                j--;
+            }
+        }
+
+        cout<<"result "<<result<<endl;
+        return result;
+        
+    }
+};
