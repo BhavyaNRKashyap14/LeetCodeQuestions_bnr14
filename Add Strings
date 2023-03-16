@@ -1,0 +1,73 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) 
+    {
+        string temp;
+        string result;
+
+        int i =num1.size();
+        int j = num2.size();
+        i =i-1;
+        j= j-1;
+
+        int carry =0; //to hold carry
+
+        while( (i>=0 ) || (j>=0) )
+        {
+            int sum = carry;
+
+            if(i>=0)
+            {
+                sum = sum+num1[i]-'0';
+            }
+
+            if(j>=0)
+            {
+                sum = sum + num2[j]-'0';
+            }
+
+     
+            carry = sum/10; //extract the carry
+            sum = sum%10; //get the last digit after addition
+            stringstream s1;
+            string a;
+            s1<<sum;
+            s1>>a;
+
+            temp = temp+a; 
+                     
+
+            i--; //iterate each character
+            j--; //iterate each character
+        }
+
+       
+
+        if(carry != 0) //add carry
+        {            
+            string b;
+            stringstream s2;
+            s2<<carry;
+            s2>>b;
+
+            temp = temp+b;
+            
+        }
+
+        //string reverse
+
+        int n1 = temp.size();
+        n1 = n1-1;
+
+        for(int i =n1;i>=0;i--)
+        {
+            result = result+temp[i];
+        }
+
+
+
+
+        return result;
+        
+    }
+};
