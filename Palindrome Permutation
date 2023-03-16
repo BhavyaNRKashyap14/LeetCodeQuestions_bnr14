@@ -1,0 +1,45 @@
+class Solution {
+public:
+    bool canPermutePalindrome(string s) 
+    {
+        bool result = false;        
+        int counts[26] = {0};
+
+        for(int i =0;i<s.size();i++)
+        {
+            int temp = s[i]-'a';
+            counts[temp]++;
+        }
+
+        int res = 0;
+        bool oddflag = false;
+
+        for(int i =0;i<26;i++)
+        {            
+            if( (!oddflag))
+            {
+                if(counts[i] %2 != 0)
+                {
+                    oddflag = true;
+                    res = counts[i]%2;
+                }
+            }
+            else
+            {
+                if(counts[i] %2 != 0)
+                {
+                    return false; //eliminating the non palindrome sequence
+                }
+            }            
+        
+        }
+
+        if((res == 1) || (res == 0))
+        {
+            return true;
+        }
+        
+        return false;
+        
+    }
+};
