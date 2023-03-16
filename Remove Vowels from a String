@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string removeVowels(string s)
+    {
+        string result;
+        int size = s.size();
+        set<char> str;
+        str.insert('A');
+        str.insert('a');
+        str.insert('E');
+        str.insert('e');
+        str.insert('I');
+        str.insert('i');
+        str.insert('O');
+        str.insert('o');
+        str.insert('U');
+        str.insert('u');
+
+        for(int i =0;i<size;i++)
+        {
+            auto it = str.find(s[i]);
+            if(it == str.end())
+            {                
+                result = result +s[i];
+            }
+        }
+
+        return result;
+        
+    }
+};
