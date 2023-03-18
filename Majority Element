@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) 
+    {
+        int result =0;
+        double count = nums.size();
+        count = count/2;        
+
+        map<int, int> m1;
+        map<int, int>::iterator it;
+
+        for(int i =0;i<nums.size();i++)
+        {
+            int temp =1;
+            it = m1.find(nums[i]);
+            if(it == m1.end())
+            {
+                m1.insert({nums[i],temp});
+            }
+            else
+            {
+                it->second = it->second +1;
+            }
+        }
+
+        for(auto it = m1.begin(); it != m1.end(); it++)
+        {                        
+
+            if((it->second) >count)
+            {
+                result = it->first;
+                return result;
+            }
+        }
+
+        return 0;
+    }
+};
