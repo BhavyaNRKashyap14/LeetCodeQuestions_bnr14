@@ -1,0 +1,42 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) 
+    {
+        vector<int> result;
+        double count = nums.size();
+        count = count/3;
+
+
+        unordered_map<int, int> m1;
+        unordered_map<int, int>::iterator it;
+
+        for(int i =0;i<nums.size();i++)
+        {
+            int temp =1;
+            it = m1.find(nums[i]);
+            if(it == m1.end())
+            {
+                m1.insert({nums[i], temp});
+            }
+            else
+            {
+                it->second = it->second+1;
+            }
+        }
+
+        //insertion is O(N) worst case
+
+        for(auto it=m1.begin(); it != m1.end(); it++)
+        {
+            if((it->second) > count)
+            {
+                result.push_back(it->first);
+            }
+        }
+
+        //O(N)
+
+        return result;
+        
+    }
+};
