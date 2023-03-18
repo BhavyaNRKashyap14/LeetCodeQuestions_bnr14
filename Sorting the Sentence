@@ -1,0 +1,63 @@
+class Solution {
+public:
+    string sortSentence(string s) 
+    {
+         
+       string result;
+       string temp; //to hold each word 
+       map<int, string> m1;
+
+
+        for(int i =0;i<s.size();i++)
+        {
+            if((!isspace(s[i])))
+            {
+                temp = temp +s[i];
+            }
+            else
+            {               
+                int l = temp.size();
+                l = l-1;
+                char ch = temp[l];
+                int num = int(ch)-48;                
+
+                int s1 = temp.size();
+                s1 = s1-1;
+                string str = temp.substr(0,s1);
+                m1.insert({num,str});
+                
+                temp.clear(); //clear temp for next iteration
+
+            }
+        }
+
+        size_t idx = s.find_last_of(" ");
+        int n2 = s.size();
+
+        string lastStr = s.substr(idx+1,n2);              
+        int l = lastStr.size();
+        l = l-1;
+        char ch = lastStr[l];
+        int num = int(ch)-48; 
+
+
+        int s1 = temp.size();
+        s1 = s1-1;
+        string str = temp.substr(0,s1);
+                  
+        m1.insert({num,str});
+
+
+        //sort the values
+        for(auto it = m1.begin(); it != m1.end(); it++)
+        {
+            result = result +it->second+" ";
+        }
+
+        int resSize = result.size();
+        resSize = resSize-1;
+        result = result.substr(0,resSize);
+
+        return result;
+    }
+};
