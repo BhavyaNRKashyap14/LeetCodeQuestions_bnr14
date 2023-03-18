@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int mostFrequentEven(vector<int>& nums)
+    {
+        int result = -1;
+        map<int, int> m1;
+        map<int, int>::iterator it;
+
+        for(int i =0;i<nums.size();i++)
+        {
+            if(nums[i] %2 ==0)
+            {
+                int temp =1;
+                it = m1.find(nums[i]);
+                if(it == m1.end())
+                {
+                    m1.insert({nums[i], temp});
+                }
+                else
+                {
+                    it->second = it->second +1;
+                }
+            }
+        }
+
+        int maxCount = 0;
+
+        for(auto it = m1.begin(); it != m1.end(); it++)
+        {
+            if((it->second) > maxCount)
+            {
+                result = it->first;
+                maxCount = it->second;
+            }
+        }
+
+        return result;
+        
+    }
+};
