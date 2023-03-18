@@ -1,0 +1,87 @@
+class Solution {
+public:
+    bool areNumbersAscending(string s) 
+    {
+        bool result = false;
+        string temp; //to store each word or number
+        int prev = -1;
+
+        for(int i =0;i<s.size();i++)
+        {
+            if(!(isspace(s[i])))
+            {
+                temp = temp+s[i];
+            }
+            else
+            {
+                bool isAlpha = CheckifAlpha(temp);
+
+                if((!isAlpha))
+                {                    
+                    int num = convertStrToNum(temp);
+
+                    if(num > prev)
+                    {
+                        prev = num;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                temp.clear();
+            }
+        }
+
+
+        int n1 = s.size();
+        size_t idx = s.find_last_of(' ');
+        string lastStr = s.substr(idx+1, n1);
+        bool isAlpha = CheckifAlpha(lastStr);
+        
+        
+        if((!isAlpha))
+        {
+            int num = convertStrToNum(temp);
+            
+            if(num > prev)
+            {
+                prev = num;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        
+    return true;        
+    }
+
+    bool CheckifAlpha(string temp)
+    {
+        bool isAlpha = false;
+
+        for(int i =0;i<temp.size();i++)
+            {
+                if(isalpha(temp[i]))
+                {
+                    isAlpha = true;
+                    break;
+                }
+            }
+
+        return isAlpha;
+    }
+
+    int convertStrToNum(string str)
+    {
+        int num =0;
+        stringstream s1;
+        s1<<str;
+        s1>>num;
+                
+        return num;
+    }
+};
