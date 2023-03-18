@@ -1,0 +1,30 @@
+class Solution {
+public:
+    bool checkString(string s) 
+    {
+        bool result = false;      
+
+        int index_a = -1; 
+        size_t idx = s.find_last_of('a');
+
+        if(idx == string::npos)
+        {
+            return true; //a is not present in the string
+        }       
+       
+        for(int i =0;i<s.size();i++)
+        {
+            if(s[i] == 'b')
+            {
+                if(i < idx)
+                {
+                    return false;
+                }
+            }
+        }
+        
+
+        result = true;
+        return result;        
+    }
+};
