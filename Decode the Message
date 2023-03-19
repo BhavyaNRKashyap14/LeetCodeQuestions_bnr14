@@ -1,0 +1,46 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) 
+    {
+        string result;
+
+        map<char, char>m1;
+        char ch = 96; //initialise char prev to a to use this as a reference to increment on every key value pair       
+
+
+        for(int i =0;i<key.size();i++)
+        {
+            if((!isspace(key[i])))
+            {
+                auto it = m1.find(key[i]);
+                if(it == m1.end())
+                {                                   
+                    char d = ch+1;                                 
+                    ch = d;
+                    m1.insert({key[i], d});
+                }
+            }
+        }
+
+        for(int i =0;i<message.size();i++) //O(N) time complexity
+        {
+            if((!isspace(message[i])))
+            {
+                auto it = m1.find(message[i]);
+                if(it != m1.end())
+                {
+                    result = result + it->second;
+                }                
+            }
+            else
+            {
+                result = result + " ";
+            }
+        }
+
+
+
+        return result;
+        
+    }
+};
