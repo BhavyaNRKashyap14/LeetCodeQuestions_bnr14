@@ -1,0 +1,49 @@
+class Solution {
+public:
+    string reverseWords(string s) 
+    {
+        string temp;
+        string result;
+
+        for(int i =0;i<s.size();i++)
+        {
+            if((!(isspace(s[i]))))
+            {
+                temp = temp+s[i];
+            }
+            else
+            {              
+                string str = stringReverse(temp);
+                result = result+str+" ";
+                temp.clear();
+            }
+        }
+
+        //to fetch last string
+        
+        int n = s.size();
+        size_t idx = s.find_last_of(" ");
+        string lastStr = s.substr(idx+1, n);
+        lastStr = stringReverse(lastStr);
+        result = result + lastStr;
+
+
+        return result;
+        
+    }
+
+    string stringReverse(string temp)
+    {
+        string str;
+
+        int n = temp.size();
+        n = n-1;
+        for(int i =n;i>=0;i--)
+        {
+            str = str+temp[i];
+        }        
+
+
+        return str;
+    }
+};
