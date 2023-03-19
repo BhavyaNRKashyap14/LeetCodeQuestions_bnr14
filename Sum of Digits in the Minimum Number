@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int sumOfDigits(vector<int>& nums) 
+    {
+        int result =0;
+
+        int minElement = *min_element(nums.begin(), nums.end());
+    
+        while(minElement > 0)
+        {
+            int temp = minElement%10;
+            result = result+temp;
+            minElement = minElement/10;
+        }
+
+        if(result %2 != 0)
+        {
+            return 0; 
+        }
+        else
+        {
+            return 1;
+        }
+
+        
+        
+    }
+};
