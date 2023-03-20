@@ -1,0 +1,54 @@
+class Solution {
+public:
+    bool isPalindrome(string s)
+    {
+        int i =0;
+        int j =s.size();
+        j = j-1;
+
+        while(i<j)
+        {
+            if((isalnum(s[i])) && (isalnum(s[j])))
+            {
+                char s_i = s[i];
+                char s_j = s[j];
+
+                if(isupper(s_i))
+                {
+                    s_i = tolower(s_i);
+                }
+
+                if(isupper(s_j))
+                {
+                    s_j = tolower(s_j);
+                }
+               
+                if(s_i == s_j)
+                {                    
+                    i++;
+                    j--;
+                }
+                else
+                {                   
+                    return false;
+                }
+            }
+            else if((isalnum(s[i]))&& ((!isalnum(s[j]))))
+            {
+                j--;
+            }
+            else if((!(isalnum(s[i])) &&  (isalnum(s[j]))))
+            {
+                i++;
+            }
+            else
+            {
+                i++;
+                j--;
+            }
+        }
+       
+        return true;
+        
+    }
+};
