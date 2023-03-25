@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string interpret(string command)
+    {
+        string result;
+        bool openBracket, closeBracket = false;
+        bool aLetter = false;
+        
+
+        for(int i =0;i<command.size();i++)
+        {
+            if(command[i] == 'G')
+            {
+                result = result+command[i];
+            }
+            else if(command[i] == '(')
+            {
+                openBracket = true;
+            }
+            else if(command[i] == 'a')
+            {
+                aLetter = true;
+            }
+            else if(command[i] == ')')
+            {
+                closeBracket = true;
+            }
+            
+            if((openBracket) && (!aLetter) && (closeBracket))
+            {
+                result = result + "o";
+                openBracket = false;
+                closeBracket = false;
+            }
+            else if( (openBracket) && (aLetter) && (closeBracket))
+            {
+                result = result+"al";
+                openBracket = false;
+                aLetter = false;
+                closeBracket = false;
+            }
+        }
+
+    return result;
+        
+    }
+};
