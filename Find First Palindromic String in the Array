@@ -1,0 +1,43 @@
+class Solution {
+public:
+    string firstPalindrome(vector<string>& words) 
+    {       
+        string result; 
+        for(int i =0;i<words.size();i++)
+        {
+            result = words[i];
+            bool flag = isPalindrome(result);
+            if(flag)
+            {
+                return result;
+            }
+            else
+            {
+                result.clear();
+            }
+        }
+        
+        return result;
+    }
+
+    bool isPalindrome(string str)
+    {
+        bool result = false;
+        int i =0;
+        int n = str.size();
+        n = n-1;
+
+        while(i<n)
+        {
+            if(str[i] != str[n])
+            {
+                return false;
+            }
+            i++;
+            n--;
+        }
+
+        result = true;
+        return result;
+    }
+};
