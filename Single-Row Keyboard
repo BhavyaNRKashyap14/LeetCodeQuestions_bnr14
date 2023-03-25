@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int calculateTime(string keyboard, string word)
+    {
+        int result =0;
+        int start = 0;
+
+        for(int i =0;i<word.size();i++)
+        {
+            size_t pos = keyboard.find(word[i]);
+            if(pos != string::npos)
+            {
+                int end = pos;
+                int temp = abs(end-start);
+                result = result+temp;
+
+                start = end;
+
+                cout<<"result "<<result<<endl;
+            }
+        }
+
+        return result;
+    }
+};
