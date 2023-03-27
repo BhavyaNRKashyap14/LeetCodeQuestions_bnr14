@@ -1,0 +1,60 @@
+class Solution {
+public:
+    bool isSumEqual(string firstWord, string secondWord, string targetWord) 
+    {
+        bool result = false;
+        map<char, int> m1;
+        char ch = 'a';
+
+        for(int i =0;i<26;i++)
+        {
+            m1.insert({ch,i});
+            ch = ch+1;    
+        }
+
+        int val1 =0;
+        int val2 =0;
+
+        int targetVal = 0;
+
+        for(int i =0;i<firstWord.size();i++)
+        {
+            auto it = m1.find(firstWord[i]);
+            if(it != m1.end())
+            {
+                int temp = it->second;
+                val1 = val1*10+temp;
+            }
+        }
+
+        for(int i =0;i<secondWord.size();i++)
+        {
+            auto it = m1.find(secondWord[i]);
+            if(it != m1.end())
+            {
+                int temp = it->second;
+                val2 = val2*10+temp;
+            }
+        }
+
+        for(int i =0;i<targetWord.size();i++)
+        {
+            auto it = m1.find(targetWord[i]);
+            if(it != m1.end())
+            {
+                int temp = it->second;
+                targetVal = targetVal*10+ temp;
+            }
+        }
+
+        int sum = val1 + val2;
+
+        if(sum == targetVal)
+        {
+            result = true;
+        }
+
+        return result;
+        
+    }
+};
