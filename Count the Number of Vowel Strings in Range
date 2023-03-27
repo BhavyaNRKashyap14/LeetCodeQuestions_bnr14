@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int vowelStrings(vector<string>& words, int left, int right) 
+    {
+        int count =0;
+
+        for(int i =left;i<=right;i++)
+        {
+            if(ifCharIsVowel(words[i]))
+            {                
+                count++;
+            }          
+        }
+
+        return count;
+    }
+
+    bool ifCharIsVowel(string temp)
+    {        
+        int start = 0;
+        int end = temp.size();
+        end = end -1;
+        bool result = false;
+
+        char ch = temp[start];
+        char st = temp[end];
+
+        if( (ch == 'a') || (ch == 'e') || (ch == 'i') || (ch == 'o') || (ch == 'u'))
+        {
+            result = true;
+        }
+
+        if(!result)
+        {
+            return false;
+        }
+        else
+        {
+            if( (st == 'a') || (st == 'e') || (st == 'i') || (st == 'o') || (st == 'u'))
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+        }
+        
+
+        return result;
+    }
+};
