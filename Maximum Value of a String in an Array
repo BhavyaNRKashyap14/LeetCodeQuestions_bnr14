@@ -1,0 +1,78 @@
+class Solution {
+public:
+    int maximumValue(vector<string>& strs) 
+    {
+        int max = -1;
+
+        for(int i =0;i<strs.size();i++)
+        {
+            string temp = strs[i];
+            int val = 0;
+
+            int size = temp.size();
+            if(size == 1)
+            {
+                if(isdigit(temp[0]))
+                {
+                    stringstream s1;
+                    s1<<temp[0];
+                    s1>>val;
+
+                    if(val > max)
+                    {
+                        max = val;
+                    }
+                }
+                else
+                {
+                    if(isalpha(temp[0]))
+                    {
+                        val = temp.size();
+                        if(val > max)
+                        {
+                            max = val;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                int i =0;
+                int n = temp.size();                
+
+                while(i<n)
+                {            
+                    if(isalpha(temp[i]))
+                    {
+                        val = n;
+                        if(val > max)
+                        {
+                            max = val;
+                            break;
+                        }
+                    }
+                    else if(isdigit(temp[i]))
+                    {
+                        int num =0;
+                        stringstream s1;
+                        s1<<temp[i];
+                        s1>>num;
+
+                        val = val*10+ num;
+                    }
+                    i++;
+                }
+
+                if(val > max)
+                {
+                    max = val;
+                }
+
+            }
+
+        }
+
+        return max;
+        
+    }
+};
